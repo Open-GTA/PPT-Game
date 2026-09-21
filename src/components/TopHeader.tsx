@@ -14,6 +14,7 @@ import {
   User,
   Sun,
   Moon,
+  Github,
 } from 'lucide-react';
 import { PresentationDeck, ParticipantMode, ThemeMode } from '../types';
 import { downloadDeckAsPptx } from '../utils/pptxEngine';
@@ -297,6 +298,23 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           >
             <Keyboard className="w-3.5 h-3.5" />
           </button>
+
+          {/* GitHub Repository */}
+          <a
+            id="btn-github-repo"
+            href="https://github.com/Open-GTA/PPT-Game"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Open-GTA/PPT-Game repository on GitHub"
+            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
+              isLight
+                ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-700 hover:text-black'
+                : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300 hover:text-white'
+            }`}
+            title="View source code on GitHub (Open-GTA/PPT-Game)"
+          >
+            <Github className="w-3.5 h-3.5" />
+          </a>
 
           {/* Fullscreen toggle */}
           <button

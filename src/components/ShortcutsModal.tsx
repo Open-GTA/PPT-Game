@@ -110,13 +110,27 @@ export const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ isOpen, onClose,
             ))}
           </div>
 
-          <div className="mt-4 pt-3 border-t border-black/5 dark:border-white/10 text-center">
+          <div className="mt-4 pt-3 border-t border-black/5 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-center">
             <p className={`text-[11px] flex items-center justify-center gap-1.5 font-medium ${
               isLight ? 'text-slate-500' : 'text-slate-400'
             }`}>
               <Zap className="w-3.5 h-3.5 text-lime-500" />
               Shortcuts respond instantly unless typing into a text field.
             </p>
+            <a
+              href="https://github.com/roshankrsoni"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Built by Roshan Kr Soni on GitHub"
+              className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border transition-colors inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
+                isLight
+                  ? 'border-black/10 text-slate-700 hover:bg-black/5'
+                  : 'border-white/10 text-slate-300 hover:bg-white/5 hover:text-lime-400'
+              }`}
+            >
+              <span>Built by</span>
+              <span className="font-bold text-lime-600 dark:text-lime-400">@roshankrsoni</span>
+            </a>
           </div>
         </motion.div>
       </div>

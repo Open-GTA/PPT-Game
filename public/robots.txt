@@ -24,4 +24,4 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-Sitemap: https://ais-pre-r22eqvwcotrc3xxhugjg7f-205965649681.asia-southeast1.run.app/sitemap.xml
+Sitemap: https://ppt-game.vercel.app/sitemap.xml

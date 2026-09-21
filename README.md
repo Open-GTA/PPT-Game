@@ -1,9 +1,13 @@
 # PPT Player Game
 
 > **High-energy, 100% browser-based presentation & game-show scoreboard.**  
-> Completely free, zero external APIs, zero paid services, and zero network dependencies. Runs entirely inside your browser.
+> Completely free, zero external APIs, zero paid services, and zero network dependencies. Runs entirely inside your browser.  
+> 🌐 **Live Web App:** [https://ppt-game.vercel.app](https://ppt-game.vercel.app)
 
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Open--GTA%2FPPT--Game-181717.svg?style=flat&logo=github)](https://github.com/Open-GTA/PPT-Game)
+[![Author](https://img.shields.io/badge/Author-Roshan%20Kr%20Soni-a3e635.svg?style=flat&logo=github&logoColor=black)](https://github.com/roshankrsoni)
+![Live](https://img.shields.io/badge/Live%20Deployment-ppt--game.vercel.app-blueviolet.svg)
 ![Mode](https://img.shields.io/badge/Architecture-100%25%20Client--Side-blue.svg)
 ![Audio](https://img.shields.io/badge/Audio-Web%20Audio%20API-orange.svg)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-.pptx%20Native%20Parsing-red.svg)
@@ -154,6 +158,45 @@ ppt-player-game/
 - **Full Keyboard Operability**: Every feature can be triggered via keyboard without requiring mouse interaction.
 - **Skip Links & Focus Trapping**: Modals trap focus and close cleanly on `Escape`.
 - **Responsive Layouts**: Designed to look great on tablets, laptops, widescreen monitors, and overhead theater projectors.
+
+---
+
+## 👨‍💻 Built & Maintained by
+
+<div align="center">
+
+<a href="https://github.com/roshankrsoni">
+  <img src="https://github.com/roshankrsoni.png" width="130" height="130" alt="Roshan Kr Soni" style="border-radius: 50%; border: 3px solid #a3e635; box-shadow: 0 0 25px rgba(163, 230, 53, 0.4);" />
+</a>
+
+<br/>
+
+### [Roshan Kr Soni](https://github.com/roshankrsoni)
+**Senior Full Stack Engineer & Software Architect**
+
+*Passionate about building high-performance web applications, offline-first systems, AI integrations, and developer experiences.*
+
+[![GitHub Profile](https://img.shields.io/badge/GitHub-roshankrsoni-181717?style=for-the-badge&logo=github)](https://github.com/roshankrsoni)
+[![Portfolio](https://img.shields.io/badge/Portfolio-roshankrsoni.github.io-2563eb?style=for-the-badge&logo=google-chrome&logoColor=white)](https://roshankrsoni.github.io)
+[![Hashnode Blog](https://img.shields.io/badge/Hashnode-Articles-2962FF?style=for-the-badge&logo=hashnode&logoColor=white)](https://roshankrsoni.hashnode.dev)
+[![Follow on GitHub](https://img.shields.io/github/followers/roshankrsoni?label=Follow%20%40roshankrsoni&style=for-the-badge&color=a3e635&logo=github)](https://github.com/roshankrsoni)
+
+<br/>
+
+<!-- Dynamic GitHub Activity Cards -->
+<p align="center">
+  <a href="https://github.com/roshankrsoni">
+    <img src="https://github-readme-stats.vercel.app/api?username=roshankrsoni&show_icons=true&theme=tokyonight&hide_border=true&title_color=a3e635&icon_color=a3e635&text_color=e2e8f0&bg_color=0d1117" alt="Roshan's GitHub Stats" height="165" />
+  </a>
+  <a href="https://github.com/roshankrsoni">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=roshankrsoni&layout=compact&theme=tokyonight&hide_border=true&title_color=a3e635&text_color=e2e8f0&bg_color=0d1117" alt="Roshan's Top Languages" height="165" />
+  </a>
+</p>
+
+⭐ **Found this project helpful?** Give it a star on [GitHub (Open-GTA/PPT-Game)](https://github.com/Open-GTA/PPT-Game)!  
+💬 **Open for collaboration:** Feel free to open an issue, pull request, or connect with [@roshankrsoni](https://github.com/roshankrsoni) / [Portfolio](https://roshankrsoni.github.io).
+
+</div>
 
 ---
 
