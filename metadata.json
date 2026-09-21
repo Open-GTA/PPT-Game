@@ -1,0 +1,6 @@
+{
+  "name": "PPT Player Game",
+  "description": "Interactive presentation player with team or individual member scoreboard, supporting up to 4 participants with custom names, hotkey scoring, slide previews, and winner celebration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
