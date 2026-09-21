@@ -1,0 +1,27 @@
+# robots.txt for PPT Player Game - Interactive Group & Team Presentation Game Show
+User-agent: *
+Allow: /
+
+# Explicitly welcome AI and Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://ais-pre-r22eqvwcotrc3xxhugjg7f-205965649681.asia-southeast1.run.app/sitemap.xml

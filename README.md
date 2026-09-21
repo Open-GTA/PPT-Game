@@ -8,6 +8,16 @@
 ![Audio](https://img.shields.io/badge/Audio-Web%20Audio%20API-orange.svg)
 ![PowerPoint](https://img.shields.io/badge/PowerPoint-.pptx%20Native%20Parsing-red.svg)
 ![Theme](https://img.shields.io/badge/Theme-Dark%20Mode%20Default-black.svg)
+![SEO](https://img.shields.io/badge/SEO-Schema.org%20%7C%20OpenGraph-brightgreen.svg)
+
+---
+
+## 🎯 Ideal For Group & Team Games
+
+- **Corporate Team Building & All-Hands**: Host interactive quiz games, icebreakers, and quarterly trivia directly in Zoom, Teams, or on a projector without paying for expensive subscription software.
+- **Classroom Quizzes & Academic Competitions**: Teachers can turn any PowerPoint presentation into an engaging classroom game show with live team scores and student engagement.
+- **Pub Trivia & Social Game Nights**: Run Jeopardy, Family Feud, or pub quiz decks with instant hotkey scoring and podium celebrations.
+- **Conferences & Workshops**: Live audience polling and competitive question-and-answer rounds.
 
 ---
 
