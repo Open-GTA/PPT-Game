@@ -20,7 +20,7 @@ export const ThumbnailsDrawer: React.FC<ThumbnailsDrawerProps> = ({
   deck,
   slides,
   currentIndex,
-  theme = 'light',
+  theme = 'dark',
   onSelectSlide,
 }) => {
   const activeThumbRef = useRef<HTMLButtonElement>(null);
@@ -67,6 +67,9 @@ export const ThumbnailsDrawer: React.FC<ThumbnailsDrawerProps> = ({
 
           {/* iOS 26 Slide-Over Bottom Sheet with Slide Previews */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="slide-navigator-title"
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
@@ -94,7 +97,7 @@ export const ThumbnailsDrawer: React.FC<ThumbnailsDrawerProps> = ({
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className={`text-xs sm:text-sm font-bold tracking-tight ${
+                    <h3 id="slide-navigator-title" className={`text-xs sm:text-sm font-bold tracking-tight ${
                       isLight ? 'text-slate-900' : 'text-white'
                     }`}>
                       Slide Navigator
@@ -117,7 +120,8 @@ export const ThumbnailsDrawer: React.FC<ThumbnailsDrawerProps> = ({
               <div className="flex items-center gap-1.5">
                 <button
                   onClick={handleScrollLeft}
-                  className={`p-1.5 rounded-full transition-all border ${
+                  aria-label="Scroll thumbnails left"
+                  className={`p-1.5 rounded-full transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                     isLight
                       ? 'bg-slate-100 hover:bg-slate-200 text-slate-600 border-slate-200'
                       : 'bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border-white/5'
@@ -128,7 +132,8 @@ export const ThumbnailsDrawer: React.FC<ThumbnailsDrawerProps> = ({
                 </button>
                 <button
                   onClick={handleScrollRight}
-                  className={`p-1.5 rounded-full transition-all border ${
+                  aria-label="Scroll thumbnails right"
+                  className={`p-1.5 rounded-full transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                     isLight
                       ? 'bg-slate-100 hover:bg-slate-200 text-slate-600 border-slate-200'
                       : 'bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border-white/5'
@@ -139,7 +144,8 @@ export const ThumbnailsDrawer: React.FC<ThumbnailsDrawerProps> = ({
                 </button>
                 <button
                   onClick={onClose}
-                  className={`p-1.5 ml-1 rounded-full transition-all border ${
+                  aria-label="Close slide navigator"
+                  className={`p-1.5 ml-1 rounded-full transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                     isLight
                       ? 'bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 border-slate-200'
                       : 'bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white border-white/10'
@@ -166,7 +172,9 @@ export const ThumbnailsDrawer: React.FC<ThumbnailsDrawerProps> = ({
                       onSelectSlide(idx);
                       onClose();
                     }}
-                    className={`flex-shrink-0 w-52 sm:w-60 rounded-2xl border p-2 text-left flex flex-col gap-2 transition-all duration-200 group relative overflow-hidden focus:outline-none ${
+                    aria-label={`Go to slide ${idx + 1}: ${s.title || 'Slide ' + (idx + 1)}`}
+                    aria-current={isActive ? 'true' : undefined}
+                    className={`flex-shrink-0 w-52 sm:w-60 rounded-2xl border p-2 text-left flex flex-col gap-2 transition-all duration-200 group relative overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                       isActive
                         ? isLight
                           ? 'border-cyan-500 bg-cyan-50/80 ring-2 ring-cyan-500/30 shadow-md scale-[1.02]'

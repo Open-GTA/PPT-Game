@@ -9,7 +9,7 @@ interface ShortcutsModalProps {
   theme?: ThemeMode;
 }
 
-export const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ isOpen, onClose, theme = 'light' }) => {
+export const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ isOpen, onClose, theme = 'dark' }) => {
   if (!isOpen) return null;
   const isLight = theme === 'light';
 
@@ -35,6 +35,9 @@ export const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ isOpen, onClose,
         isLight ? 'bg-black/40' : 'bg-black/75'
       }`}>
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="shortcuts-modal-title"
           initial={{ opacity: 0, scale: 0.94, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 12 }}
@@ -55,7 +58,7 @@ export const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ isOpen, onClose,
                 <Keyboard className="w-5 h-5 text-lime-500 dark:text-lime-400" />
               </div>
               <div>
-                <h3 className="text-sm font-black tracking-tight">
+                <h3 id="shortcuts-modal-title" className="text-sm font-black tracking-tight">
                   Keyboard Shortcuts
                 </h3>
                 <p className={`text-[11px] font-mono ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
@@ -65,7 +68,8 @@ export const ShortcutsModal: React.FC<ShortcutsModalProps> = ({ isOpen, onClose,
             </div>
             <button
               onClick={onClose}
-              className={`p-1.5 rounded-full transition-all border ${
+              aria-label="Close shortcuts dialog"
+              className={`p-1.5 rounded-full transition-all border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                 isLight
                   ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-600'
                   : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300 hover:text-white'

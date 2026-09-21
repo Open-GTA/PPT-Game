@@ -112,7 +112,7 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
   onClose,
   participants,
   mode,
-  theme = 'light',
+  theme = 'dark',
   onResetGame,
   onOpenSetup,
 }) => {
@@ -241,6 +241,10 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
         }`}
       >
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="winner-modal-title"
+          aria-describedby="winner-modal-description"
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 15 }}
@@ -263,7 +267,8 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
           <button
             id="btn-close-winner-modal"
             onClick={onClose}
-            className={`absolute top-4 right-4 p-2 rounded-full transition-all active:scale-95 border ${
+            aria-label="Close match podium dialog"
+            className={`absolute top-4 right-4 p-2 rounded-full transition-all active:scale-95 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
               isLight
                 ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-700'
                 : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300 hover:text-white'
@@ -296,10 +301,10 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
                   <Trophy className="w-7 h-7" />
                 </div>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black tracking-tight uppercase">
+              <h2 id="winner-modal-title" className="text-2xl sm:text-3xl font-black tracking-tight uppercase">
                 DEADLOCK TIE
               </h2>
-              <p className={`mt-1 text-xs sm:text-sm font-medium ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+              <p id="winner-modal-description" className={`mt-1 text-xs sm:text-sm font-medium ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
                 A phenomenal tie between <span className="font-bold text-amber-500 dark:text-lime-400">{winners.length} champions</span> with{' '}
                 <span className="font-mono font-bold">{highestScore} PTS</span> each!
               </p>
@@ -373,7 +378,7 @@ export const WinnerModal: React.FC<WinnerModalProps> = ({
 
               {/* Champion Name & Title */}
               <div className="mt-4">
-                <h2 className="text-3xl sm:text-4xl font-black tracking-tight uppercase">
+                <h2 id="winner-modal-title" className="text-3xl sm:text-4xl font-black tracking-tight uppercase">
                   <span>{champion.name}</span>{' '}
                   <span className={isLight ? 'text-slate-400 font-light' : 'text-slate-500 font-light'}>WINS</span>
                 </h2>

@@ -54,7 +54,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   onOpenSetup,
   participantMode = 'teams',
   participantCount = 2,
-  theme = 'light',
+  theme = 'dark',
   onToggleTheme,
   currentSlideIndex,
   totalSlides,
@@ -123,9 +123,11 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           {/* Segmented Deck Switcher */}
           <div className="relative min-w-0">
             <select
+              id="select-deck"
               value={currentDeck.id}
               onChange={(e) => onSelectDeck(e.target.value)}
-              className={`appearance-none rounded-full text-[11px] sm:text-xs font-medium pl-3 pr-7 sm:pr-8 py-1 focus:outline-none focus:ring-1 focus:ring-lime-500 cursor-pointer max-w-[100px] xs:max-w-[130px] sm:max-w-[180px] md:max-w-[220px] truncate backdrop-blur-xl transition-all border ${
+              aria-label="Switch presentation deck"
+              className={`appearance-none rounded-full text-[11px] sm:text-xs font-medium pl-3 pr-7 sm:pr-8 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 cursor-pointer max-w-[100px] xs:max-w-[130px] sm:max-w-[180px] md:max-w-[220px] truncate backdrop-blur-xl transition-all border ${
                 isLight
                   ? 'bg-black/5 hover:bg-black/10 border-black/5 text-[#161715]'
                   : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-200'
@@ -149,7 +151,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           <button
             id="btn-open-thumbnails"
             onClick={onOpenThumbnails}
-            className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1 rounded-full transition-all backdrop-blur-xl group active:scale-95 border ${
+            aria-label={`Browse slide thumbnails: slide ${currentSlideIndex + 1} of ${totalSlides}`}
+            className={`flex items-center gap-1.5 px-3 sm:px-3.5 py-1 rounded-full transition-all backdrop-blur-xl group active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 border ${
               isLight
                 ? 'bg-black/5 hover:bg-black/10 border-black/5 text-[#161715]'
                 : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-200'
@@ -174,7 +177,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             <button
               id="btn-header-setup-teams"
               onClick={onOpenSetup}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all backdrop-blur-xl active:scale-95 text-xs font-medium ${
+              aria-label={`Configure ${participantCount} ${participantMode === 'teams' ? 'Teams' : 'Members'}`}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all backdrop-blur-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 text-xs font-medium ${
                 isLight
                   ? 'bg-black/5 hover:bg-black/10 border-black/5 text-[#161715]'
                   : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-200 hover:text-white'
@@ -201,7 +205,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             <button
               id="btn-toggle-theme"
               onClick={onToggleTheme}
-              className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl active:scale-95 ${
+              aria-label={isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+              className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                 isLight
                   ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-700'
                   : 'bg-white/5 hover:bg-white/10 border-white/10 text-amber-300'
@@ -220,6 +225,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             onChange={handleFileChange}
             className="hidden"
             id="ppt-file-upload-input"
+            aria-label="Upload PowerPoint Presentation file (.pptx)"
           />
 
           {/* OX Signature High-Contrast Action Button */}
@@ -227,7 +233,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
             id="btn-upload-ppt"
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploading}
-            className={`flex items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full active:scale-95 text-xs font-bold transition-all disabled:opacity-50 shadow-sm border ${
+            aria-label="Upload PowerPoint (.pptx) file"
+            className={`flex items-center gap-1 sm:gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full active:scale-95 text-xs font-bold transition-all disabled:opacity-50 shadow-sm border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
               isLight
                 ? 'bg-[#161715] text-[#f7f6f2] hover:bg-black/85 border-transparent'
                 : 'bg-[#f7f7f5] text-[#131512] hover:bg-white/90 border-transparent'
@@ -245,7 +252,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           <button
             id="btn-download-pptx"
             onClick={handleDownload}
-            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl ${
+            aria-label="Download presentation as PPTX file"
+            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
               isLight
                 ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-700'
                 : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300 hover:text-white'
@@ -259,7 +267,9 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           <button
             id="btn-toggle-sound"
             onClick={onToggleSound}
-            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl ${
+            aria-label={soundEnabled ? 'Mute sound effects' : 'Enable sound effects'}
+            aria-pressed={soundEnabled}
+            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
               soundEnabled
                 ? isLight
                   ? 'bg-lime-500/10 border-lime-500/30 text-lime-800'
@@ -277,7 +287,8 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           <button
             id="btn-keyboard-shortcuts"
             onClick={onOpenShortcuts}
-            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl ${
+            aria-label="View keyboard shortcuts"
+            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
               isLight
                 ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-700'
                 : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300 hover:text-white'
@@ -291,7 +302,9 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
           <button
             id="btn-fullscreen-toggle"
             onClick={onToggleFullscreen}
-            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl ${
+            aria-label={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+            aria-pressed={isFullscreen}
+            className={`p-1.5 sm:p-2 rounded-full border text-xs transition-all backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
               isFullscreen
                 ? isLight
                   ? 'bg-black/10 border-black/10 text-[#161715] font-bold'

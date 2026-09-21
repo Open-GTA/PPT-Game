@@ -35,7 +35,7 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
   onNextSlide,
   onPrevSlide,
   onSelectSlide,
-  theme = 'light',
+  theme = 'dark',
 }) => {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -257,7 +257,8 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
               id="btn-slide-prev"
               onClick={onPrevSlide}
               disabled={currentIndex === 0}
-              className={`p-2.5 sm:p-3 rounded-full disabled:opacity-0 disabled:pointer-events-none hover:scale-110 active:scale-95 transition-all duration-200 shadow-2xl backdrop-blur-2xl opacity-75 sm:opacity-0 group-hover:opacity-100 ${
+              aria-label="Previous Slide (Arrow Left)"
+              className={`p-2.5 sm:p-3 rounded-full disabled:opacity-0 disabled:pointer-events-none hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 transition-all duration-200 shadow-2xl backdrop-blur-2xl opacity-75 sm:opacity-0 group-hover:opacity-100 ${
                 isLight
                   ? 'bg-slate-900/80 hover:bg-slate-900 text-white shadow-slate-900/40'
                   : 'bg-black/60 hover:bg-black/90 text-white shadow-black/80'
@@ -276,7 +277,8 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
               id="btn-slide-next"
               onClick={onNextSlide}
               disabled={currentIndex === totalSlides - 1}
-              className={`p-2.5 sm:p-3 rounded-full disabled:opacity-0 disabled:pointer-events-none hover:scale-110 active:scale-95 transition-all duration-200 shadow-2xl backdrop-blur-2xl opacity-75 sm:opacity-0 group-hover:opacity-100 ${
+              aria-label="Next Slide (Arrow Right or Space)"
+              className={`p-2.5 sm:p-3 rounded-full disabled:opacity-0 disabled:pointer-events-none hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 transition-all duration-200 shadow-2xl backdrop-blur-2xl opacity-75 sm:opacity-0 group-hover:opacity-100 ${
                 isLight
                   ? 'bg-slate-900/80 hover:bg-slate-900 text-white shadow-slate-900/40'
                   : 'bg-black/60 hover:bg-black/90 text-white shadow-black/80'
@@ -295,7 +297,10 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
               <button
                 id="btn-reveal-answer"
                 onClick={() => setShowAnswer(!showAnswer)}
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/70 hover:bg-black/90 border border-white/15 text-white text-xs font-semibold transition-all shadow-xl backdrop-blur-2xl active:scale-95 hover:border-emerald-500/40"
+                aria-expanded={showAnswer}
+                aria-controls="slide-answer-panel"
+                aria-label={showAnswer ? 'Hide question answer' : 'Reveal question answer'}
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/70 hover:bg-black/90 border border-white/15 text-white text-xs font-semibold transition-all shadow-xl backdrop-blur-2xl active:scale-95 hover:border-emerald-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
               >
                 {showAnswer ? (
                   <>
@@ -317,6 +322,9 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
               <AnimatePresence>
                 {showAnswer && (
                   <motion.div
+                    id="slide-answer-panel"
+                    role="region"
+                    aria-label="Revealed Answer"
                     initial={{ opacity: 0, y: 12, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
@@ -334,7 +342,13 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
         {/* BOTTOM INTERACTIVE PROGRESS TRACK WITH HOVER SLIDE PREVIEWS */}
         <div
           id="slide-progress-bar-container"
-          className="absolute bottom-0 inset-x-0 h-1.5 sm:h-2 bg-white/10 z-20 cursor-pointer group/progress"
+          role="progressbar"
+          aria-label="Slide progression"
+          aria-valuenow={currentIndex + 1}
+          aria-valuemin={1}
+          aria-valuemax={totalSlides}
+          tabIndex={0}
+          className="absolute bottom-0 inset-x-0 h-1.5 sm:h-2 bg-white/10 z-20 cursor-pointer group/progress focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
           onMouseMove={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));

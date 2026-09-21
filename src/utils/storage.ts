@@ -1,7 +1,7 @@
 import { ScoreHistoryItem, PresentationDeck, Participant, ParticipantMode, ThemeMode } from '../types';
 
 const STORAGE_KEYS = {
-  THEME_MODE: 'ppt_theme_mode_v2',
+  THEME_MODE: 'ppt_theme_mode_v3',
   PARTICIPANTS_V2: 'ppt_participants_v2',
   PARTICIPANT_MODE_V2: 'ppt_participant_mode_v2',
   HAS_CONFIGURED_TEAMS_V2: 'ppt_has_configured_teams_v2',
@@ -39,9 +39,9 @@ export const getSavedThemeMode = (): ThemeMode => {
       return saved;
     }
   } catch {
-    // Default to light
+    // Default to dark
   }
-  return 'light'; // Default to Light mode as requested
+  return 'dark'; // Always default to Dark mode
 };
 
 export const saveThemeMode = (mode: ThemeMode) => {

@@ -32,7 +32,7 @@ interface BottomScoreBarProps {
 export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
   participants,
   mode,
-  theme = 'light',
+  theme = 'dark',
   onAddScore,
   onUpdateParticipantName,
   onRandomizeParticipantEmoji,
@@ -212,7 +212,8 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                       <button
                         type="button"
                         onClick={() => onRandomizeParticipantEmoji && onRandomizeParticipantEmoji(idx)}
-                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl border flex items-center justify-center text-sm sm:text-base cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-sm ${
+                        aria-label={`Randomize avatar emoji for ${displayName}`}
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl border flex items-center justify-center text-sm sm:text-base cursor-pointer hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 transition-all shadow-sm ${
                           isLight
                             ? 'bg-white border-black/5 text-[#161715]'
                             : 'bg-white/10 border-white/10 text-white'
@@ -241,7 +242,8 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                             }}
                             autoFocus
                             maxLength={20}
-                            className={`text-[11px] px-1.5 py-0.5 rounded border w-24 outline-none font-bold ${
+                            aria-label={`Edit name for ${displayName}`}
+                            className={`text-[11px] px-1.5 py-0.5 rounded border w-24 outline-none focus-visible:ring-2 focus-visible:ring-lime-500 font-bold ${
                               isLight
                                 ? 'bg-white border-black/15 text-slate-900'
                                 : 'bg-[#161715] border-white/20 text-white'
@@ -250,7 +252,8 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                           <button
                             type="button"
                             onClick={() => handleSaveEdit(idx)}
-                            className={`text-[10px] px-1.5 py-0.5 rounded font-bold border ${
+                            aria-label={`Save name for ${displayName}`}
+                            className={`text-[10px] px-1.5 py-0.5 rounded font-bold border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                               isLight ? 'bg-black/5 border-black/10 text-slate-800' : 'bg-white/15 border-white/20 text-white'
                             }`}
                           >
@@ -269,8 +272,9 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                           </span>
                           <button
                             onClick={() => handleStartEdit(idx, p.name)}
+                            aria-label={`Rename ${displayName}`}
                             title="Rename participant"
-                            className={`transition-colors p-0.5 shrink-0 ${
+                            className={`transition-colors p-0.5 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 rounded ${
                               isLight ? 'text-slate-400 hover:text-slate-700' : 'text-slate-500 hover:text-white'
                             }`}
                           >
@@ -303,6 +307,7 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                     {/* Numerical Score with Floating Delta */}
                     <div className="relative flex items-center">
                       <span
+                        aria-label={`${displayName} current score: ${p.score}`}
                         className={`font-mono text-xl sm:text-2xl lg:text-3xl font-black tracking-tight tabular-nums min-w-[2.2ch] text-right ${
                           isTopScorer && !isTie
                             ? isLight
@@ -338,7 +343,8 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                       <button
                         id={`btn-add-score-${idx}`}
                         onClick={() => onAddScore(idx, 10)}
-                        className={`px-2 py-1 rounded-lg sm:rounded-xl font-mono font-bold active:scale-95 transition-all flex items-center gap-0.5 text-xs border ${
+                        aria-label={`Add 10 points to ${displayName} (Key ${p.keyLabel})`}
+                        className={`px-2 py-1 rounded-lg sm:rounded-xl font-mono font-bold active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 transition-all flex items-center gap-0.5 text-xs border ${
                           isLight
                             ? 'bg-[#161715] text-[#f7f6f2] hover:bg-black/80 border-transparent shadow-sm'
                             : 'bg-[#f7f7f5] text-[#131512] hover:bg-white/90 border-transparent shadow-sm'
@@ -349,9 +355,11 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                         <span className="text-[10px] sm:text-[11px]">10</span>
                       </button>
                       <button
+                        id={`btn-sub-score-${idx}`}
                         onClick={() => onAddScore(idx, -10)}
                         disabled={p.score <= 0}
-                        className={`p-1 rounded-lg sm:rounded-xl border transition-all text-xs disabled:opacity-20 disabled:cursor-not-allowed ${
+                        aria-label={`Subtract 10 points from ${displayName}`}
+                        className={`p-1 rounded-lg sm:rounded-xl border transition-all text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 disabled:opacity-20 disabled:cursor-not-allowed ${
                           isLight
                             ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-700'
                             : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300'
@@ -423,7 +431,8 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
             <button
               id="btn-open-team-setup"
               onClick={onOpenSetup}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all text-xs font-medium active:scale-95 ${
+              aria-label={mode === 'teams' ? `Configure Teams: currently ${participants.length} teams` : `Configure Members: currently ${participants.length} members`}
+              className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all text-xs font-medium active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                 isLight
                   ? 'bg-black/5 hover:bg-black/10 border-black/5 text-[#161715]'
                   : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-200'
@@ -441,7 +450,9 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
               <button
                 id="btn-reset-scores"
                 onClick={() => setShowResetConfirm(true)}
-                className={`flex items-center gap-1 px-3 py-1 rounded-full border transition-all text-xs font-medium active:scale-95 ${
+                aria-label="Reset scores for a new match"
+                aria-expanded={showResetConfirm}
+                className={`flex items-center gap-1 px-3 py-1 rounded-full border transition-all text-xs font-medium active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                   isLight
                     ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-700 hover:text-rose-700'
                     : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300 hover:text-rose-400'
@@ -456,6 +467,9 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
               <AnimatePresence>
                 {showResetConfirm && (
                   <motion.div
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label="Confirm reset match scores"
                     initial={{ opacity: 0, scale: 0.92, y: 8 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.92, y: 8 }}
@@ -479,13 +493,15 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
                           onResetGame();
                           setShowResetConfirm(false);
                         }}
-                        className="px-3.5 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded-full text-xs font-bold transition-all active:scale-95 border-0"
+                        aria-label="Confirm reset match scores"
+                        className="px-3.5 py-1 bg-rose-600 hover:bg-rose-500 text-white rounded-full text-xs font-bold transition-all active:scale-95 border-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400"
                       >
                         Yes, Reset
                       </button>
                       <button
                         onClick={() => setShowResetConfirm(false)}
-                        className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all active:scale-95 border ${
+                        aria-label="Cancel score reset"
+                        className={`px-3.5 py-1 rounded-full text-xs font-medium transition-all active:scale-95 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                           isLight
                             ? 'bg-black/5 border-black/5 text-slate-700'
                             : 'bg-white/10 border-white/10 text-slate-300'
@@ -503,7 +519,8 @@ export const BottomScoreBar: React.FC<BottomScoreBarProps> = ({
             <button
               id="btn-declare-winner"
               onClick={onDeclareWinner}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border active:scale-95 text-xs font-black tracking-tight transition-all shadow-sm shrink-0 ${
+              aria-label="Show the Winner and final standings with fanfare and confetti (Key W)"
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border active:scale-95 text-xs font-black tracking-tight transition-all shadow-sm shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                 isLight
                   ? 'bg-[#161715] text-[#f7f6f2] hover:bg-black/85 border-transparent'
                   : 'bg-[#a3e635] text-[#131512] hover:bg-[#bef264] border-transparent shadow-[0_0_16px_rgba(163,230,53,0.3)]'

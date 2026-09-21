@@ -23,7 +23,7 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
   onSave,
   currentMode,
   currentParticipants,
-  theme = 'light',
+  theme = 'dark',
   isInitialPrompt = false,
 }) => {
   const [mode, setMode] = useState<ParticipantMode>(currentMode);
@@ -222,6 +222,9 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
         isLight ? 'bg-black/40' : 'bg-black/80'
       }`}>
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="team-setup-modal-title"
           initial={{ opacity: 0, scale: 0.93, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.93, y: 15 }}
@@ -243,7 +246,7 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                 {mode === 'teams' ? <Users className="w-5 h-5 text-lime-500 dark:text-lime-400" /> : <User className="w-5 h-5 text-lime-500 dark:text-lime-400" />}
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-black tracking-tight flex items-center gap-2">
+                <h3 id="team-setup-modal-title" className="text-base sm:text-lg font-black tracking-tight flex items-center gap-2">
                   <span>Match Setup</span>
                   {isInitialPrompt && (
                     <span className={`text-[10px] uppercase font-mono font-bold tracking-wider px-2 py-0.5 rounded border ${
@@ -266,7 +269,8 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
             {!isInitialPrompt && (
               <button
                 onClick={onClose}
-                className={`p-1.5 rounded-full transition-all active:scale-95 border ${
+                aria-label="Close match setup dialog"
+                className={`p-1.5 rounded-full transition-all active:scale-95 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                   isLight
                     ? 'bg-black/5 hover:bg-black/10 border-black/5 text-slate-600'
                     : 'bg-white/5 hover:bg-white/10 border-white/10 text-slate-300 hover:text-white'
@@ -291,7 +295,9 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                   type="button"
                   id="mode-teams-btn"
                   onClick={() => handleModeChange('teams')}
-                  className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between gap-1.5 ${
+                  aria-pressed={mode === 'teams'}
+                  aria-label="Select Teams mode, up to 4 teams"
+                  className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                     mode === 'teams'
                       ? isLight
                         ? 'bg-black/5 border-black/20 text-[#161715] ring-1 ring-black/10'
@@ -321,7 +327,9 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                   type="button"
                   id="mode-members-btn"
                   onClick={() => handleModeChange('members')}
-                  className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between gap-1.5 ${
+                  aria-pressed={mode === 'members'}
+                  aria-label="Select Individual Members mode, up to 20 members"
+                  className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                     mode === 'members'
                       ? isLight
                         ? 'bg-black/5 border-black/20 text-[#161715] ring-1 ring-black/10'
@@ -343,7 +351,7 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                     )}
                   </div>
                   <p className={`text-[11px] ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
-                    Empty names: manually type each member to continue
+                    Custom name for every participant
                   </p>
                 </button>
               </div>
@@ -501,7 +509,8 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                       <button
                         type="button"
                         onClick={() => handleRandomizeSingleEmoji(idx)}
-                        className={`w-9 h-9 rounded-xl border flex items-center justify-center text-base shadow-sm shrink-0 hover:scale-105 active:scale-95 transition-all group relative cursor-pointer ${
+                        aria-label={`Randomize avatar emoji for ${label}`}
+                        className={`w-9 h-9 rounded-xl border flex items-center justify-center text-base shadow-sm shrink-0 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 transition-all group relative cursor-pointer ${
                           isLight
                             ? 'bg-white border-black/5 text-[#161715]'
                             : 'bg-[#1a1d18] border-white/10 text-white'
@@ -534,7 +543,9 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                           onChange={(e) => handleNameChange(idx, e.target.value)}
                           placeholder={mode === 'teams' ? `Team ${String.fromCharCode(65 + idx)}` : 'Type member name...'}
                           maxLength={25}
-                          className={`w-full text-xs px-2.5 py-1.5 rounded-lg border font-medium outline-none transition-all ${
+                          aria-label={`${label} name`}
+                          aria-required={mode === 'members'}
+                          className={`w-full text-xs px-2.5 py-1.5 rounded-lg border font-medium outline-none focus-visible:ring-2 focus-visible:ring-lime-500 transition-all ${
                             isCurrentEmpty
                               ? isLight
                                 ? 'bg-white text-slate-900 border-amber-400 focus:border-amber-500 placeholder:text-slate-400'
@@ -551,7 +562,8 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                         <button
                           type="button"
                           onClick={() => handleRemoveMember(idx)}
-                          className={`p-1.5 rounded-lg transition-colors text-slate-400 hover:text-rose-500 ${
+                          aria-label={`Remove member #${idx + 1}`}
+                          className={`p-1.5 rounded-lg transition-colors text-slate-400 hover:text-rose-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 ${
                             isLight ? 'hover:bg-rose-50' : 'hover:bg-rose-950/40'
                           }`}
                           title={`Remove Member #${idx + 1}`}
@@ -568,7 +580,8 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                   <button
                     type="button"
                     onClick={handleAddMember}
-                    className={`w-full py-2 px-3 rounded-xl border border-dashed text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    aria-label={`Add member (${count + 1} of ${MAX_MEMBERS})`}
+                    className={`w-full py-2 px-3 rounded-xl border border-dashed text-xs font-bold flex items-center justify-center gap-1.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                       isLight
                         ? 'border-black/15 hover:border-black/30 text-[#161715] hover:bg-black/[0.02]'
                         : 'border-white/15 hover:border-lime-400/50 text-slate-200 hover:bg-white/[0.02]'
@@ -587,7 +600,12 @@ export const TeamSetupModal: React.FC<TeamSetupModalProps> = ({
                 type="submit"
                 id="btn-save-team-setup"
                 disabled={mode === 'members' && !allMembersNamed}
-                className={`w-full py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] ${
+                aria-label={
+                  mode === 'members' && !allMembersNamed
+                    ? `Please type all ${count} member names to continue`
+                    : `Start match with ${count} ${mode === 'teams' ? 'Teams' : 'Members'}`
+                }
+                className={`w-full py-2.5 px-4 rounded-full font-black text-xs sm:text-sm tracking-wide shadow-sm flex items-center justify-center gap-2 transition-all active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 ${
                   mode === 'members' && !allMembersNamed
                     ? 'bg-slate-300 dark:bg-slate-800 text-slate-500 dark:text-slate-400 cursor-not-allowed shadow-none'
                     : isLight

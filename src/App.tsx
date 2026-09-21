@@ -51,7 +51,7 @@ export default function App() {
 
   const [scoreHistory, setScoreHistory] = useState<ScoreHistoryItem[]>(() => getSavedHistory());
 
-  // --- Theme Mode State (Default to Light Mode) ---
+  // --- Theme Mode State (Default to Dark Mode) ---
   const [theme, setTheme] = useState<ThemeMode>(() => getSavedThemeMode());
 
   // Synchronize document theme class and localStorage
